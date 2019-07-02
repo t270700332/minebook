@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html  xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8" />
-<title>Insert title here</title>
-<link rel="stylesheet" href="/static/common/js/vue.js"/>
+<head th:replace="common_header :: common_header(~{::title},~{::link},~{},~{})">
+<title>ึ๗าณ</title>
+<link rel="stylesheet" th:href="@{/common/css/bootstrap.css}"/>
 </head>
 <body>
 	<p>Hello!<span th:text="${user}"></span>!<br />welcom to Thymeleaf's world</p>
