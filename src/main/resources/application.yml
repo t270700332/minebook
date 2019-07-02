@@ -7,10 +7,11 @@ spring:
       #热部署文件，页面不产生缓存，及时更新
       cache: false
       #thymelea模板配置
-      prefix: classpath:/templates/index/
+      prefix: classpath:/templates/
       suffix: .html
       encoding: UTF-8
       content-type: text/html
+      mode: HTML5
  
        
       
