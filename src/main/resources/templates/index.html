@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org">
-<head th:replace="common_header :: common_header(~{::title},~{::link},~{},~{})">
-<title>Ö÷Ò³</title>
-<link rel="stylesheet" th:href="@{/common/css/bootstrap.css}"/>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common_header :: common_header(~{::title})">
+   <title>ä¸»é¡µ</title>
 </head>
 <body>
 	<p>Hello!<span th:text="${user}"></span>!<br />welcom to Thymeleaf's world</p>
