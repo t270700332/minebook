@@ -1,5 +1,5 @@
 server: 
-    port: 8888
+    port: 8887
     context-path: /mbook
 #thymeleaf的相关配置
 spring: 
@@ -12,5 +12,6 @@ spring:
       encoding: UTF-8
       content-type: text/html
       mode: HTML5
+ 
        
       
