@@ -19,9 +19,11 @@
       		</el-form-item>
       	</div>
       	<div class="form-label-group">
-	        <el-input v-model="ruleForm.password" prop="checkPassWord" prefix-icon="iconfont  icon-ali-locking" type="ruleForm.password" placeholder="请输入密码"  auto-complete="off"></el-input>
+      		<el-form-item  prop="password">
+	        	<el-input v-model="ruleForm.password"  prefix-icon="iconfont  icon-ali-locking" type="password" placeholder="请输入密码"  auto-complete="off"></el-input>
+      		</el-form-item>
       	</div>
-      	<el-button type="primary" style="width:100%;" :loading="loadingFlag" @click="login">{{loginText}}</el-button>
+      	<el-button type="primary" style="width:100%;" :loading="loadingFlag" @click="login('ruleForm')">{{loginText}}</el-button>
       	<p class="mt-5 mb-3 text-muted text-center" th:text="${versionName}"></p>
     </el-form >
 </body>
@@ -44,20 +46,11 @@
 	    	      };
 	    	      
 	    	      var validatePassWord = (rule, value, callback) => {
-		    	        if (!value) {
-		    	          return callback(new Error('年龄不能为空'));
-		    	        }
 		    	        setTimeout(() => {
-		    	        	
-		    	          if (!Number.isInteger(value)) {
-		    	        	  
-		    	            callback(new Error('请输入数字值'));
-		    	          } else {
-		    	            if (value < 18) {
-		    	              callback(new Error('必须年满18岁'));
-		    	            } else {
-		    	              callback();
-		    	            }
+		    	        	if (!value) {
+				    	          return callback(new Error('密码不能为空'));
+				    	   } else {
+ 		    	              callback();
 		    	          }
 		    	        }, 1000);
 		    	      };
@@ -72,16 +65,25 @@
 	        		userName: [
 	                    { validator: validateUserName, trigger: 'blur' }
 	                  ],
-	                checkPassWord: [
+	                password: [
 	                    { validator: validatePassWord, trigger: 'blur' }
 	                  ]
 	        	}
 	        }
 	      },
 	      methods:{
-	    	  login(){
-	    		  this.loadingFlag = true;
-	    		  this.loginText = "登录中";
+	    	  login(formName){
+	    		  this.$refs[formName].validate((valid) => {
+	    	          if (valid) {
+	    	            alert('submit!');
+	    	            this.loadingFlag = true;
+	  	    		 	 this.loginText = "登录中";
+	    	          } else {
+	    	            console.log('error submit!!');
+	    	            return false;
+	    	          }
+	    	        });
+	    		  
 	    	  }
 	      }
 	    })
