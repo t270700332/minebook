@@ -9,29 +9,73 @@
    <th:block th:include="/common/common_header :: header"></th:block>
 </head>
 <body>
-    <form class="form-signin" id="app">
+    <el-form class="form-signin" :model="ruleForm" ref="ruleForm" status-icon :rules="rules" id="app">
         <div class="text-center mb-4">
               <h1 class="h3 mb-3 font-weight-normal">记账本</h1>
         </div>
         <div class="form-label-group">
-	        <el-input prefix-icon="iconfont icon-ali-nickname" v-model="userName" placeholder="请输入用户名" clearable></el-input>
+	        <el-input prefix-icon="iconfont icon-ali-nickname" prop="checkUserName" v-model="ruleForm.userName" placeholder="请输入用户名" clearable auto-complete="off"></el-input>
       	</div>
       	<div class="form-label-group">
-	        <el-input v-model="password" prefix-icon="iconfont  icon-ali-locking" type="password" placeholder="请输入密码" clearable></el-input>
+	        <el-input v-model="ruleForm.password" prop="checkPassWord" prefix-icon="iconfont  icon-ali-locking" type="ruleForm.password" placeholder="请输入密码" clearable auto-complete="off"></el-input>
       	</div>
       	<el-button type="primary" style="width:100%;" :loading="loadingFlag" @click="login">{{loginText}}</el-button>
       	<p class="mt-5 mb-3 text-muted text-center" th:text="${versionName}"></p>
-    </form>
+    </el-form >
 </body>
 <script>
 	    new Vue({
 	      el: '#app',
-	      data: function() {
+	      data() {
+	    	  var validateUserName = (rule, value, callback) => {
+	    		  alert()
+	    	        if (!value) {
+	    	          return callback(new Error('年龄不能为空'));
+	    	        }
+	    	        setTimeout(() => {
+	    	          if (!Number.isInteger(value)) {
+	    	            callback(new Error('请输入数字值'));
+	    	          } else {
+	    	            if (value < 18) {
+	    	              callback(new Error('必须年满18岁'));
+	    	            } else {
+	    	              callback();
+	    	            }
+	    	          }
+	    	        }, 1000);
+	    	      };
+	    	      
+	    	      var validatePassWord = (rule, value, callback) => {
+		    	        if (!value) {
+		    	          return callback(new Error('年龄不能为空'));
+		    	        }
+		    	        setTimeout(() => {
+		    	          if (!Number.isInteger(value)) {
+		    	            callback(new Error('请输入数字值'));
+		    	          } else {
+		    	            if (value < 18) {
+		    	              callback(new Error('必须年满18岁'));
+		    	            } else {
+		    	              callback();
+		    	            }
+		    	          }
+		    	        }, 1000);
+		    	      };
 	        return {
-	        	userName:"",
-	        	password:"",
+	        	ruleForm:{
+	        		userName:"",
+		        	password:"",
+	        	},
 	        	loadingFlag:false,
-	        	loginText:"登录"
+	        	loginText:"登录",
+	        	rules:{
+	        		checkUserName: [
+	                    { validator: validateUserName, trigger: 'blur' }
+	                  ],
+	                checkPassWord: [
+	                    { validator: validatePassWord, trigger: 'blur' }
+	                  ]
+	        	}
 	        }
 	      },
 	      methods:{
