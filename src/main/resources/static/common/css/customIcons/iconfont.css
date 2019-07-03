@@ -1,0 +1,34 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1562139089131'); /* IE9 */
+  src: url('iconfont.eot?t=1562139089131#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAOAAAsAAAAAB2gAAAMxAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqCTII3ATYCJAMMCwgABCAFhG0HPBuDBsgusG3Yow0sablwnLdzqF4HnoEoHr7Wyvene3b3QggK2AGzigJE4SJkrnyQJZDQ2f+5zPGI/LKpKVSM6o5dKf3l35eysFMn3Egp9qTMJm7WHBTYBMsD6nxa4Os8y8YGnFSc7wf8B/p7fHDIKQXCgWURJPAFG3CEEQc8yoA60P9zTb0Uv8Vf21yqKdoiCo/2Bjge0MCig2wDGhBvGLugJW4m0EAXg8TUi7s2jMjMXoHYbgsVRjIeWWbxmlCpmJjFRahacap4ggvB9+OPEVGjUCbmwNkbzw04+p73Q/jg/zI9hGI6B9g0EgYhEysrXYtVosggSQNVW9XKqchCMZX/fwK5Zqxs9I9XEBVmbiPQD0YLvjeOiOB7d4UCJFBBFTuBo5Bs9YgstSdyM7HWeFPp5f2MjSUNz1wDoINXqSanr4Pp0A0aN437r07vneaXp9N8KEUbYJF35pq3vGJIl4N/497SEa4Bekrwsm3Ttn8bmI537+7vZfPeyb3vM1fXqYp2/WR2+3UO/+KkIX6y+tA4MRhaX39MD5qD8YfdLig/bOS1zZASHasPxT5TVsZ1ndf63/xMb6m9Jy/MmjugL8/c6plXtdCtbrkATLfVus8sNP5St9G95g7t2W7yaZdT46hbi2LPe4rL7JqGQS8gTSy//pTf+BqticPvfUfGM/io+9+BKeturJ2yO/gFio4VWVOZ5pQVuSM33Mn4VJoCDTSDF18ILXwbbmzdOZdQ0zqBQlVnSGp6oZkcBKWGRkFFzQRoYKAZ0xtqaa+KyHUY4BiA0MwjKDTxGJJmnqKZ/AqlNv5BRbNI0MDCmF+woT6xZeyUSY3JwLUFbtFlYNrWeCzMb5JIPJXTqoDqEke2H4cPGZaPX1JAPMWQfanY3B+buJGlj9PBduR5EnezdEiPVzfHcbgzdOjGqjetrpM+jJmCEVWMGNBaBbSFTgqYXu3YWOHzTURIeFTcQKuKdxEWsRtHww0xrAN6qQ860W7lmn1Swqb9Yia0EZN8aDpwEM+KSGh3dTsH0cVWbR4QCu0Yiqpt7KpfXd7ov986aMBcJEURKbLqdqm7diBGAjtIC1SfAAAAAAA=') format('woff2'),
+  url('iconfont.woff?t=1562139089131') format('woff'),
+  url('iconfont.ttf?t=1562139089131') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1562139089131#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 20px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-ali"], [class*="icon-ali"] {
+  font-family:"iconfont" !important;
+  font-size:20px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.icon-ali-locking:before {
+  content: "\e69e";
+}
+
+.icon-ali-nickname:before {
+  content: "\e6a0";
+}
+
