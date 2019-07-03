@@ -13,8 +13,10 @@
         <div class="text-center mb-4">
               <h1 class="h3 mb-3 font-weight-normal">记账本</h1>
         </div>
-        <div class="form-label-group">
-	        <el-input prefix-icon="iconfont icon-ali-nickname" prop="checkUserName" v-model="ruleForm.userName" placeholder="请输入用户名" clearable auto-complete="off"></el-input>
+        <div class="form-label-group" >
+        	<el-form-item  prop="userName">
+	        	<el-input prefix-icon="iconfont icon-ali-nickname"  v-model="ruleForm.userName" placeholder="请输入用户名" clearable auto-complete="off"></el-input>
+      		</el-form-item>
       	</div>
       	<div class="form-label-group">
 	        <el-input v-model="ruleForm.password" prop="checkPassWord" prefix-icon="iconfont  icon-ali-locking" type="ruleForm.password" placeholder="请输入密码" clearable auto-complete="off"></el-input>
@@ -28,11 +30,12 @@
 	      el: '#app',
 	      data() {
 	    	  var validateUserName = (rule, value, callback) => {
-	    		  alert()
+	    		  console.log(value);
 	    	        if (!value) {
 	    	          return callback(new Error('年龄不能为空'));
 	    	        }
 	    	        setTimeout(() => {
+	    	        	console.log(Number.isInteger(value));
 	    	          if (!Number.isInteger(value)) {
 	    	            callback(new Error('请输入数字值'));
 	    	          } else {
@@ -50,7 +53,9 @@
 		    	          return callback(new Error('年龄不能为空'));
 		    	        }
 		    	        setTimeout(() => {
+		    	        	
 		    	          if (!Number.isInteger(value)) {
+		    	        	  
 		    	            callback(new Error('请输入数字值'));
 		    	          } else {
 		    	            if (value < 18) {
@@ -69,7 +74,7 @@
 	        	loadingFlag:false,
 	        	loginText:"登录",
 	        	rules:{
-	        		checkUserName: [
+	        		userName: [
 	                    { validator: validateUserName, trigger: 'blur' }
 	                  ],
 	                checkPassWord: [
