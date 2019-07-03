@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
    <title>登录</title>
    <link th:href="@{/loginCss/login.css}" rel="stylesheet"/>
+   <link th:href="@{/common/css/customIcons/iconfont.css}" rel="stylesheet"/>
    <th:block th:include="/common/common_header :: header"></th:block>
 </head>
 <body>
@@ -13,19 +14,20 @@
               <h1 class="h3 mb-3 font-weight-normal">记账本</h1>
         </div>
         <div class="form-label-group">
-	        <el-input v-model="userName" placeholder="请输入用户名" clearable></el-input>
+	        <el-input prefix-icon="iconfont icon-ali-nickname" v-model="userName" placeholder="请输入用户名" clearable></el-input>
+      	</div>
+      	<div class="form-label-group">
+	        <el-input v-model="password" prefix-icon="iconfont  icon-ali-locking" type="password" placeholder="请输入密码" clearable></el-input>
       	</div>
     </form>
-    <script th:src="@{/common/js/vue.js}"></script>
-    <script th:src="@{/common/js/element-ui.js}"></script>
-    
 </body>
 <script>
 	    new Vue({
 	      el: '#app',
 	      data: function() {
 	        return {
-	        	userName:""
+	        	userName:"",
+	        	password:""
 	        }
 	      }
 	    })
