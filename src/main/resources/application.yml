@@ -8,6 +8,8 @@ spring:
       cache: false
       content-type: text/html
       mode: LEGACYHTML5
- 
+version: 
+    number: 1.0
+    name: © 2017-2018
        
       

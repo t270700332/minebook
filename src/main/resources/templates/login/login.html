@@ -20,6 +20,7 @@
 	        <el-input v-model="password" prefix-icon="iconfont  icon-ali-locking" type="password" placeholder="请输入密码" clearable></el-input>
       	</div>
       	<el-button type="primary" style="width:100%;" :loading="loadingFlag" @click="login">{{loginText}}</el-button>
+      	<p class="mt-5 mb-3 text-muted text-center" th:text="${versionName}"></p>
     </form>
 </body>
 <script>
