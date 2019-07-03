@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+   <title>登录</title>
+   <link th:href="@{/loginCss/login.css}" rel="stylesheet"/>
+   <th:block th:include="/common/common_header :: header"></th:block>
+</head>
+<body>
+    <form class="form-signin" id="app">
+        <div class="text-center mb-4">
+              <h1 class="h3 mb-3 font-weight-normal">记账本</h1>
+        </div>
+        <div class="form-label-group">
+	        <el-input v-model="userName" placeholder="请输入用户名" clearable></el-input>
+      	</div>
+    </form>
+    <script th:src="@{/common/js/vue.js}"></script>
+    <script th:src="@{/common/js/element-ui.js}"></script>
+    
+</body>
+<script>
+	    new Vue({
+	      el: '#app',
+	      data: function() {
+	        return {
+	        	userName:""
+	        }
+	      }
+	    })
+  </script>
+</html>
+
