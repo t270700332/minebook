@@ -19,6 +19,7 @@
       	<div class="form-label-group">
 	        <el-input v-model="password" prefix-icon="iconfont  icon-ali-locking" type="password" placeholder="请输入密码" clearable></el-input>
       	</div>
+      	<el-button type="primary" style="width:100%;" :loading="loadingFlag" @click="login">{{loginText}}</el-button>
     </form>
 </body>
 <script>
@@ -27,8 +28,16 @@
 	      data: function() {
 	        return {
 	        	userName:"",
-	        	password:""
+	        	password:"",
+	        	loadingFlag:false,
+	        	loginText:"登录"
 	        }
+	      },
+	      methods:{
+	    	  login(){
+	    		  this.loadingFlag = true;
+	    		  this.loginText = "登录中";
+	    	  }
 	      }
 	    })
   </script>
