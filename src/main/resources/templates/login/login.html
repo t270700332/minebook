@@ -15,11 +15,11 @@
         </div>
         <div class="form-label-group" >
         	<el-form-item  prop="userName">
-	        	<el-input prefix-icon="iconfont icon-ali-nickname"  v-model="ruleForm.userName" placeholder="请输入用户名" clearable auto-complete="off"></el-input>
+	        	<el-input prefix-icon="iconfont icon-ali-nickname"  v-model="ruleForm.userName" placeholder="请输入用户名"  auto-complete="off"></el-input>
       		</el-form-item>
       	</div>
       	<div class="form-label-group">
-	        <el-input v-model="ruleForm.password" prop="checkPassWord" prefix-icon="iconfont  icon-ali-locking" type="ruleForm.password" placeholder="请输入密码" clearable auto-complete="off"></el-input>
+	        <el-input v-model="ruleForm.password" prop="checkPassWord" prefix-icon="iconfont  icon-ali-locking" type="ruleForm.password" placeholder="请输入密码"  auto-complete="off"></el-input>
       	</div>
       	<el-button type="primary" style="width:100%;" :loading="loadingFlag" @click="login">{{loginText}}</el-button>
       	<p class="mt-5 mb-3 text-muted text-center" th:text="${versionName}"></p>
@@ -30,20 +30,15 @@
 	      el: '#app',
 	      data() {
 	    	  var validateUserName = (rule, value, callback) => {
-	    		  console.log(value);
+	    		 var reg = /^[A-Za-z][A-Za-z0-9]{5,11}$/;
 	    	        if (!value) {
-	    	          return callback(new Error('年龄不能为空'));
+	    	          return callback(new Error('用户名不能为空'));
 	    	        }
 	    	        setTimeout(() => {
-	    	        	console.log(Number.isInteger(value));
-	    	          if (!Number.isInteger(value)) {
-	    	            callback(new Error('请输入数字值'));
+	    	          if (!reg.test(value)) {
+	    	            callback(new Error('请输入正确的用户名'));
 	    	          } else {
-	    	            if (value < 18) {
-	    	              callback(new Error('必须年满18岁'));
-	    	            } else {
 	    	              callback();
-	    	            }
 	    	          }
 	    	        }, 1000);
 	    	      };
