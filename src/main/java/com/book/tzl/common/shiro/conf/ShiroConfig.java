@@ -22,7 +22,7 @@ public class ShiroConfig {
 	public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
 		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 		shiroFilterFactoryBean.setSecurityManager(securityManager);
-		shiroFilterFactoryBean.setLoginUrl("/login");
+		shiroFilterFactoryBean.setLoginUrl("/user/login");
 		shiroFilterFactoryBean.setUnauthorizedUrl("/page/fail.html");// 未授权跳转
 		// 登录成功跳转的链接
 		shiroFilterFactoryBean.setSuccessUrl("/page/main.html");
@@ -30,6 +30,8 @@ public class ShiroConfig {
 		Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
 		// 配置退出 过滤器,其中的具体的退出代码Shiro已经替我们实现了，登出后跳转配置的loginUrl
 		filterChainDefinitionMap.put("/logout", "logout");
+		// 注册
+		filterChainDefinitionMap.put("/user/register", "anon");
 		// 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
 		filterChainDefinitionMap.put("/statics/**", "anon");
 		filterChainDefinitionMap.put("/css/**", "anon");
