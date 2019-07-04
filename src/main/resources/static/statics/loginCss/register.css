@@ -1,0 +1,228 @@
+html, body {
+	height: 100%;
+}
+
+body {
+	-ms-flex-align: center;
+	-ms-flex-pack: center;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	justify-content: center;
+	/* padding-top: 40px;
+    padding-bottom: 40px; */
+	background-color: #f5f5f5;
+	background-image: url(../img/login_bg.jpg);
+	background-size: 100% 100%;
+	background-position: center top;
+	background-position: center;
+}
+
+.main-agile {
+	padding: 5em 0;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+	blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
+	em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
+	b, u, i, dl, dt, dd, ol, nav ul, nav li, fieldset, form, label, legend,
+	table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas,
+	details, embed, figure, figcaption, footer, header, hgroup, menu, nav,
+	output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+h1 {
+	text-align:center;
+    letter-spacing: 7px;
+}
+
+.w3ls-grids {
+    width: 65%;
+    margin: 7em auto;
+}
+
+.w3ls-right {
+    float: left;
+    width: 60%;
+}
+
+.w3l-dot {
+    padding: 4em 0em 0em 0!important;
+}
+
+.w3-heading h3 {
+    text-shadow: 2px 3px rgba(0, 0, 0, 0.21);
+    letter-spacing: 5px;
+    line-height: 1.5em;
+    color: #f9b701;
+    font-size: 3.3em;
+    font-weight: 700;
+}
+
+.w3-heading h4 {
+    font-size: 2em;
+    color: #000000;
+    line-height: 1.5em;
+}
+
+.w3-heading p {
+    margin: 1em 0 0 0;
+    color: red;
+}
+
+.dsCountDown.ds-black {
+	color: red;
+    position: relative;
+	width: 100%;
+}
+.ds-black .ds-element {
+    float: left;
+    text-align: center;
+    width: 20%;
+	margin:0.5em 0;
+	padding:1em 0;
+}
+.ds-element.ds-element-minutes {
+    margin: 0.5em 0;
+}
+.ds-element.ds-element-days {
+    width: 20%;
+}
+.ds-element.ds-element-hours {
+ 
+}
+.ds-element.ds-element-minutes {
+   
+}
+.ds-element.ds-element-seconds {
+  
+}
+.dsCountDown.ds-black > .ds-element.ds-element-seconds {
+	margin-right: 0;
+	padding-right: 0;
+	border-right: 0;
+}
+
+.ds-black .ds-element-title {
+	      font-size: 1em;
+    text-transform: uppercase;
+    margin: 15px 0;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+}
+
+.ds-black .ds-element-value {
+    font-size: 3em;
+    color: #f9b701;
+    letter-spacing: 2px;
+	line-height: 1.2em;
+	font-weight: 600;
+}
+.ds-element-value.ds-days{
+	font-weight:700;
+	color:#f9b701;
+}
+
+.w3ls-left {
+    float: left;
+    width: 40%;
+    text-align: center;
+    position: relative;
+}
+
+.login-w3l {
+    width: 100%;
+    padding: 2em;
+    background: rgb(0, 0, 0);
+    border-radius: 18px;
+    -webkit-box-shadow: 10px 10px 16px 0px rgba(255, 255, 255, 0.1);
+    -moz-box-shadow: 10px 10px 16px 0px rgba(255, 255, 255, 0.1);
+    box-shadow: 10px 10px 16px 0px rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.w3ls-left h2 {
+    color: #f9b701;
+    font-size: 1.2em;
+    margin: 1em 0 1em 0;
+    text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.45);
+    font-size: 24px;
+    font-weight: normal;
+    text-transform: capitalize;
+}
+
+.login-form input[type="text"], 
+.login-form textarea, 
+.login-form input[type="email"] {
+    width: 93%;
+    padding: 10px;
+    border: none;
+    border-left: 1px solid #b52e31;
+    outline: none;
+    color: #fff;
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    background: rgba(45, 45, 45, 0.35);
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    font-family: 'Montserrat', sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.login-form input[type="submit"]:hover {
+    background: #f9b701c7;
+}
+
+.login-form input[type="submit"] {
+    background: #b52e31;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    text-transform: capitalize;
+    border: 2px solid #b52e31;
+    width: 100%;
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    padding: 13px 0;
+    letter-spacing: 1px;
+    margin-top: 15px;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    background-color: transparent;
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.3);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.clear {
+    clear: both;
+}
+
+.copyright {
+    text-align: center;
+}
+
+.copyright p {
+    color: #000000;
+    margin: 5em 0 0 0;
+    font-size: 1.2em;
+}
