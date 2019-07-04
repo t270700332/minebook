@@ -10,21 +10,23 @@
 </head>
 <body>
     <el-form class="form-signin" :model="ruleForm" ref="ruleForm" status-icon :rules="rules" id="app">
-        <div class="text-center mb-4">
-              <h1 class="h3 mb-3 font-weight-normal">记账本</h1>
-        </div>
-        <div class="form-label-group" >
-        	<el-form-item  prop="userName">
-	        	<el-input prefix-icon="iconfont icon-ali-nickname"  v-model="ruleForm.userName" placeholder="请输入用户名"  auto-complete="off"></el-input>
-      		</el-form-item>
-      	</div>
-      	<div class="form-label-group">
-      		<el-form-item  prop="password">
-	        	<el-input v-model="ruleForm.password"  prefix-icon="iconfont  icon-ali-locking" type="password" placeholder="请输入密码"  auto-complete="off"></el-input>
-      		</el-form-item>
-      	</div>
-      	<el-button type="primary" style="width:100%;" :loading="loadingFlag" @click="login('ruleForm')">{{loginText}}</el-button>
-      	<p class="mt-5 mb-3 text-muted text-center" th:text="${versionName}"></p>
+	    <div class="form-bg">
+	        <div class="text-center mb-4">
+	              <h1 class="h3 mb-3 font-weight-normal">记账本</h1>
+	        </div>
+	        <div class="form-label-group" >
+	        	<el-form-item  prop="userName">
+		        	<el-input prefix-icon="iconfont icon-ali-nickname"  v-model="ruleForm.userName" placeholder="请输入用户名"  auto-complete="off"></el-input>
+	      		</el-form-item>
+	      	</div>
+	      	<div class="form-label-group">
+	      		<el-form-item  prop="password">
+		        	<el-input v-model="ruleForm.password"  prefix-icon="iconfont  icon-ali-locking" type="password" placeholder="请输入密码"  auto-complete="off"></el-input>
+	      		</el-form-item>
+	      	</div>
+	      	<el-button type="primary" style="width:100%;" :loading="loadingFlag" @click="login('ruleForm')">{{loginText}}</el-button>
+	      	<p class="mt-5 mb-3 text-muted text-center" th:text="${versionName}"></p>
+	    </div>
     </el-form >
 </body>
 <script>
