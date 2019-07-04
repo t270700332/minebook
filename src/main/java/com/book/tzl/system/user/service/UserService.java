@@ -7,4 +7,6 @@ import com.book.tzl.system.user.domain.UserPojo;
 public interface UserService {
 
 	public List<UserPojo> findAll();
+
+	public UserPojo findByUsername(String userName);
 }

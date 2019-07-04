@@ -1,24 +1,29 @@
 package com.book.tzl.system.user.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class UserPojo {
-	private int id;
-	private String name;
+	private int uid;
+	private String username;
 	private String password;
+	private Set<Role> roles = new HashSet<>();
+	private String salt;
 
-	public int getId() {
-		return id;
+	public int getUid() {
+		return uid;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setUid(int uid) {
+		this.uid = uid;
 	}
 
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -29,4 +34,23 @@ public class UserPojo {
 		this.password = password;
 	}
 
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
+	public String getCredentialsSalt() {
+		return username + salt;
+	}
 }

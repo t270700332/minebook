@@ -14,4 +14,6 @@ import com.book.tzl.system.user.domain.UserPojo;
 @Mapper
 public interface UserMapper {
 	List<UserPojo> findAll();
+
+	UserPojo findByUsername(String userName);
 }

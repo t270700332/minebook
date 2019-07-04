@@ -78,7 +78,11 @@
 			<artifactId>hutool-all</artifactId>
 			<version>4.5.16</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.32</version>
+		</dependency>
 		<!-- thymeleaf配置 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -93,12 +97,27 @@
 		</dependency>
 		
 		<!-- shiro -->
-		<dependency>
-		    <groupId>org.apache.shiro</groupId>
-		    <artifactId>shiro-spring</artifactId>
-		    <version>1.3.2</version>
+		<dependency>  
+	        <groupId>commons-logging</groupId>  
+	        <artifactId>commons-logging</artifactId>  
+	        <version>1.1.3</version>  
+	    </dependency>  
+	    <dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-spring</artifactId>
+			<version>1.2.4</version>
 		</dependency>
-		
+	    <dependency>  
+	        <groupId>org.apache.shiro</groupId>  
+	        <artifactId>shiro-core</artifactId>  
+	        <version>1.2.2</version>  
+	    </dependency>  
+	    
+	     <dependency>  
+		    <groupId>org.apache.shiro</groupId>  
+		    <artifactId>shiro-web</artifactId>  
+		    <version>1.2.2</version>  
+		</dependency>   
 		
 
 		<dependency>

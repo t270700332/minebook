@@ -1,7 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.book.tzl.system.user.mapper.UserMapper">
+   <sql id="userSql">
+      a.uid,
+      a.user_name  AS username,
+      a.password
+   </sql>
+   
+   <resultMap id="userMap" type="com.book.tzl.system.user.domain.UserPojo">
+        <id property="uid" column="uid"/>
+        <result property="username" column="user_name"/>
+        <result property="password" column="password"/>
+        <collection property="roles" ofType="com.book.tzl.system.user.domain.Role">
+            <id property="rid" column="rid"/>
+            <result property="name" column="role_name"/>
+            <collection property="permissions" ofType="com.book.tzl.system.user.domain.Permission">
+                <id property="pid" column="pid"/>
+                <result property="name" column="permission_name"/>
+            </collection>
+        </collection>
+    </resultMap>
+
     <select id="findAll" resultType="com.book.tzl.system.user.domain.UserPojo">
-        SELECT id,name,password from t_author
+    
+        SELECT 
+        	<include refid="userSql" /> 
+        FROM 
+        	sys_user a
+    </select>
+    
+    <select id="findByUsername" parameterType="string" resultMap="userMap">
+          SELECT 
+        	*
+           FROM 
+           		sys_user u,sys_role r,sys_permission p
+           WHERE 
+           		u.rid=r.rid
+           AND 
+           		p.rid=r.rid
+           AND 
+           		u.user_name=#{username}
     </select>
 </mapper>
