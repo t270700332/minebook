@@ -3,6 +3,25 @@ server:
     context-path: /mbook
 #thymeleaf的相关配置
 spring: 
+   datasource: 
+      url: jdbc:mysql://127.0.0.1:3306/minebook?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      driverClassName: com.mysql.jdbc.Driver
+      username: root
+      password: 520520
+      type: com.alibaba.druid.pool.DruidDataSource
+      filters: stat
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
    thymeleaf: 
       #热部署文件，页面不产生缓存，及时更新
       cache: false
@@ -11,5 +30,17 @@ spring:
 version: 
     number: 1.0
     name: © 2017-2018
-       
-      
+mybatis:
+    mapper-locations: classpath*:/mapper/**/*.xml
+    type-aliases-package: com.book.tzl.**.domain
+    configuration:
+    #配置返回数据库(column下划线命名&&返回java实体是驼峰命名)，自动匹配无需as（没开启这个，SQL需要写as： select user_id as userId）
+       map-underscore-to-camel-case: true
+#配置日志
+logging:
+#此处存放日志的路径
+path:
+   config: classpath:logback-spring.xml
+#指定不同目录下的日志的级别
+level:
+   com.shimain.springboot.mapper: DEBUG    
