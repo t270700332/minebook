@@ -25,7 +25,9 @@
 	      		</el-form-item>
 	      	</div>
 	      	<el-button type="primary" style="width:100%;" :loading="loadingFlag" @click="login('ruleForm')">{{loginText}}</el-button>
-	      	<el-link type="info">注册</el-link>
+	      	<div>
+	      		<el-link type="info">注册</el-link>
+	      	</div>
 	      	<p class="mt-5 mb-3 text-muted text-center" th:text="${versionName}"></p>
 	    </div>
     </el-form >
