@@ -30,7 +30,7 @@
         	sys_user a
     </select>
     
-    <select id="findByUsername" parameterType="string" resultType="com.book.tzl.system.user.domain.UserPojo">
+    <select id="findByUsername" parameterType="String" resultType="com.book.tzl.system.user.domain.UserPojo">
           SELECT 
         	*
            FROM 
