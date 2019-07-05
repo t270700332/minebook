@@ -21,7 +21,19 @@ public class PasswordHelper {
 		// 加盐
 		user.setSalt(randomNumberGenerator.nextBytes().toHex());
 		String newPassword = new SimpleHash(algorithmName, user.getPassword(),
-				ByteSource.Util.bytes(user.getUsername()), hashIterations).toHex();
+				ByteSource.Util.bytes(user.getCredentialsSalt()), hashIterations).toHex();
 		user.setPassword(newPassword);
+	}
+
+	public static String encrypt(UserPojo user) {
+		String newPassword = new SimpleHash(algorithmName, user.getPassword(),
+				ByteSource.Util.bytes(user.getCredentialsSalt()), hashIterations).toHex();
+		return newPassword;
+	}
+
+	public static String encrypt(String username, String password, String salt) {
+		String newPassword = new SimpleHash(algorithmName, password, ByteSource.Util.bytes(username + salt),
+				hashIterations).toHex();
+		return newPassword;
 	}
 }

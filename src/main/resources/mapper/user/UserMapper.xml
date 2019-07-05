@@ -4,7 +4,8 @@
    <sql id="userSql">
       a.uid,
       a.user_name  AS username,
-      a.password
+      a.password,
+      a.salt
    </sql>
    
    <resultMap id="userMap" type="com.book.tzl.system.user.domain.UserPojo">
@@ -40,8 +41,8 @@
     
     <insert id="createUser" useGeneratedKeys="true" keyProperty="uid">
    	    insert into 
-   	    	sys_user (user_name,password)
+   	    	sys_user (user_name,password,salt)
 		values
-			 (#{username},#{password})
+			 (#{username},#{password},#{salt})
     </insert>
 </mapper>

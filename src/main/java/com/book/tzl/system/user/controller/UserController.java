@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,8 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.book.tzl.common.Version;
-import com.book.tzl.common.shiro.UserRealm.Principal;
-import com.book.tzl.common.utils.UserUtils;
+import com.book.tzl.common.utils.PasswordHelper;
 import com.book.tzl.system.user.domain.UserPojo;
 import com.book.tzl.system.user.impl.UserServiceImpl;
 
@@ -35,9 +37,16 @@ public class UserController {
 	}
 
 	@RequestMapping("/toindex")
-	public ModelAndView index(UserPojo user) {
+	public ModelAndView index(String username, String password) {
+		UserPojo user = userServiceImpl.findByUsername(username);
 		ModelAndView view = new ModelAndView();
-		Principal principal = UserUtils.getPrincipal();
+		Subject subject = SecurityUtils.getSubject();
+		String md5Pwd = PasswordHelper.encrypt(username, password, user.getSalt());
+		UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), md5Pwd);
+		if (!subject.isAuthenticated()) {
+
+			subject.login(token);
+		}
 		return view;
 	}
 

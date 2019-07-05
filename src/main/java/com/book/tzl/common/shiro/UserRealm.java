@@ -7,8 +7,9 @@ import java.util.Map;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
-import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -17,6 +18,7 @@ import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.book.tzl.common.utils.PasswordHelper;
 import com.book.tzl.system.user.domain.UserPojo;
 import com.book.tzl.system.user.service.UserService;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -53,18 +55,23 @@ public class UserRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken)
 			throws AuthenticationException {
-		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-		String username = (String) token.getPrincipal();
+		String username = (String) authcToken.getPrincipal();
+		String password = new String((char[]) authcToken.getCredentials());
+
 		UserPojo user = userService.findByUsername(username);
 		if (user == null) {
-			return null;
-			// throw new UnknownAccountException(); // 没找到账号
-		} else {
-			byte[] salt = user.getPassword().getBytes();
-			SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(user.getUsername(),
-					user.getPassword(), ByteSource.Util.bytes(salt), getName());
-			return authenticationInfo;
+			// return null;
+			throw new UnknownAccountException("账号或密码不正确"); // 没找到账号
 		}
+		// 密码错误
+		String md5Password = PasswordHelper.encrypt(username, password, user.getSalt());
+		if (!md5Password.equals(user.getPassword())) {
+			throw new IncorrectCredentialsException("账号或密码不正确");
+		}
+		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(user, md5Password,
+				ByteSource.Util.bytes(username), getName());
+
+		return authenticationInfo;
 		/*
 		 * if (Boolean.TRUE.equals(user.getLocked())) { throw new
 		 * LockedAccountException(); // 账号被锁定 }
