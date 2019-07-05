@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.book.tzl.common.utils.PasswordHelper;
 import com.book.tzl.system.user.domain.UserPojo;
 import com.book.tzl.system.user.mapper.UserMapper;
 import com.book.tzl.system.user.service.UserService;
@@ -23,6 +24,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserPojo findByUsername(String userName) {
 		return userMapper.findByUsername(userName);
+	}
+
+	@Override
+	public Long createUser(UserPojo user) {
+		PasswordHelper.encryptPassword(user);
+		return userMapper.createUser(user);
 	}
 
 }

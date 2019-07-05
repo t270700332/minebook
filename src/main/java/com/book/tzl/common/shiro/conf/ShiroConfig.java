@@ -32,6 +32,10 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/logout", "logout");
 		// 注册
 		filterChainDefinitionMap.put("/user/register", "anon");
+		filterChainDefinitionMap.put("/user/toregister", "anon");
+		// 登录
+		filterChainDefinitionMap.put("/user/toindex", "anon");
+		filterChainDefinitionMap.put("/user/checkUsername", "anon");
 		// 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
 		filterChainDefinitionMap.put("/statics/**", "anon");
 		filterChainDefinitionMap.put("/css/**", "anon");

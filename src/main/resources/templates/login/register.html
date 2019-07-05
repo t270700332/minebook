@@ -44,14 +44,14 @@
 				<h2 class="sub-head-w3-agileits">坚持</h2>
 			</div>			
 			<div class="login-form ">	
-				<el-form  action="#" method="post" :model="ruleForm" ref="ruleForm"  status-icon :rules="rules">
+				<el-form  id="userForm" :model="UserPojo" ref="UserPojo"  status-icon :rules="rules">
 					<el-form-item  prop="username">
-				    	<el-input v-model="ruleForm.username" placeholder="用户名"></el-input>
+				    	<el-input v-model="UserPojo.username" name="username" placeholder="用户名"></el-input>
 				   	</el-form-item>
 				   	<el-form-item  prop="password">
-				    	<el-input v-model="ruleForm.password" placeholder="密码"></el-input>
+				    	<el-input v-model="UserPojo.password" name="password" placeholder="密码"></el-input>
 				    </el-form-item>
-						<input type="submit" value="注册">
+						<input type="button" id="resButton" @click="onSubmit('UserPojo')" value="注册">
 				</el-form>	
 			</div>
 			<!-- //login -->
@@ -80,19 +80,25 @@ new Vue({
    	   	            callback(new Error('用户名由字母加数字组成首位须为字母,长度为6-12'));
    	   	          } else {
    	   	        	  $.ajax({
-   	   	        		  url:[[@{/}]]+"checkUsername",
+   	   	        		  url:[[@{/}]]+"user/checkUsername",
    	   	        		  type:"post",
-   	   	        		  data:value,
+   	   	        		  data:{
+   	   	        			  username:value
+   	   	        		  },
    	   	        		  dataType:"json",
    	   	        		  timeout:10000,
    	   	        		  success:function(res){
-   	   	        			  
+   	   	        			  if(res.code == 400){
+   	   	        			     callback(new Error(res.msg));
+   	   	        			  }else{
+   	   	        				callback();
+   	   	        			  }
    	   	        		  },
    	   	        		  error:function(e){
    	   	        		 	callback(new Error('发生错误,请联系管理员'));
    	   	        		  }
    	   	        	  });
-   	   	              callback();
+   	   	             
    	   	          }
    	        }
    	      };
@@ -111,7 +117,7 @@ new Vue({
 	    	}, 500);
 	    };
       return {
-    	  ruleForm:{
+    	  UserPojo:{
     		  username:"",
         	  password:""
     	  },
@@ -130,7 +136,50 @@ new Vue({
       }
     },
     methods:{
-    	
+    	onSubmit(formName){
+    		this.$refs[formName].validate((valid) => {
+  	          if (valid) {
+  	        	$("#resButton").attr("disabled","disabled");
+  	        	$("#resButton").text("注册中...");
+  	        	 var sef = this;
+  	        	$.ajax({
+	   	        		  url:[[@{/}]]+"user/register",
+	   	        		  type:"post",
+	   	        		  data:$('#userForm').serialize(),
+	   	        		  dataType:"json",
+	   	        		  timeout:10000,
+	   	        		  success:function(res){
+	   	        			  if(res.code == 200){
+	   	        				sef.$notify({
+	   	        		          title: '成功',
+	   	        		          message: res.msg,
+	   	        		          type: 'success'
+	   	        		        });
+	   	        				setTimeout(function(){
+	   	        					window.location.href=[[@{/}]]+"user/login";
+	   	        				},1000);
+	   	        				
+	   	        			  }else{
+	   	        				sef.$notify({
+	   	        		          title: '警告',
+	   	        		          message: res.msg,
+	   	        		          type: 'warning'
+	   	        		        });
+	   	        			  }
+	   	        		  },
+	   	        		  error:function(e){
+	   	        			sef.$notify({
+	   	        	          title: '警告',
+	   	        	          message: '发生错误,请联系管理员',
+	   	        	          type: 'warning'
+	   	        	        });
+	   	        		  }
+	   	        	  });
+  	          } else {
+  	            return false;
+  	          }
+  	        });
+    	}
     },
     created() {
     	var nowDate = new Date();

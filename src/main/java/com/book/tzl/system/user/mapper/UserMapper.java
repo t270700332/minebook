@@ -16,4 +16,12 @@ public interface UserMapper {
 	List<UserPojo> findAll();
 
 	UserPojo findByUsername(String userName);
+
+	/**
+	 * 创建用户
+	 * 
+	 * @param user
+	 * @return
+	 */
+	Long createUser(UserPojo user);
 }

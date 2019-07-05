@@ -29,16 +29,19 @@
         	sys_user a
     </select>
     
-    <select id="findByUsername" parameterType="string" resultMap="userMap">
+    <select id="findByUsername" parameterType="string" resultType="com.book.tzl.system.user.domain.UserPojo">
           SELECT 
         	*
            FROM 
-           		sys_user u,sys_role r,sys_permission p
+           		sys_user u
            WHERE 
-           		u.rid=r.rid
-           AND 
-           		p.rid=r.rid
-           AND 
            		u.user_name=#{username}
     </select>
+    
+    <insert id="createUser" useGeneratedKeys="true" keyProperty="uid">
+   	    insert into 
+   	    	sys_user (user_name,password)
+		values
+			 (#{username},#{password})
+    </insert>
 </mapper>

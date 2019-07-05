@@ -9,4 +9,12 @@ public interface UserService {
 	public List<UserPojo> findAll();
 
 	public UserPojo findByUsername(String userName);
+
+	/**
+	 * 创建用户
+	 * 
+	 * @param user
+	 * @return
+	 */
+	Long createUser(UserPojo user);
 }

@@ -9,24 +9,24 @@
    <th:block th:include="/common/common_header :: header"></th:block>
 </head>
 <body>
-    <el-form class="form-signin" :model="ruleForm" ref="ruleForm" status-icon :rules="rules" id="app">
+    <el-form class="form-signin" id="userForm" :model="ruleForm" ref="ruleForm" status-icon :rules="rules">
 	    <div class="form-bg">
 	        <div class="text-center mb-4">
 	              <h1 class="h3 mb-3 font-weight-normal">记账本</h1>
 	        </div>
 	        <div class="form-label-group" >
 	        	<el-form-item  prop="userName">
-		        	<el-input prefix-icon="iconfont icon-ali-nickname"  v-model="ruleForm.userName" placeholder="请输入用户名"  auto-complete="off"></el-input>
+		        	<el-input prefix-icon="iconfont icon-ali-nickname" name="username"  v-model="ruleForm.userName" placeholder="请输入用户名"  auto-complete="off"></el-input>
 	      		</el-form-item>
 	      	</div>
 	      	<div class="form-label-group">
 	      		<el-form-item  prop="password">
-		        	<el-input v-model="ruleForm.password"  prefix-icon="iconfont  icon-ali-locking" type="password" placeholder="请输入密码"  auto-complete="off"></el-input>
+		        	<el-input v-model="ruleForm.password" name="password"  prefix-icon="iconfont  icon-ali-locking" type="password" placeholder="请输入密码"  auto-complete="off"></el-input>
 	      		</el-form-item>
 	      	</div>
-	      	<el-button type="primary" style="width:100%;" :loading="loadingFlag" @click="login('ruleForm')">{{loginText}}</el-button>
+	      	<el-button type="primary" style="width:100%;" :loading="loadingFlag" @click="toindex('ruleForm')">{{loginText}}</el-button>
 	      	<div style="text-align: right;">
-	      		<el-link type="info" :underline="false" th:href="@{/user/register}">注册</el-link>
+	      		<el-link type="info" :underline="false" th:href="@{/user/toregister}">注册</el-link>
 	      	</div>
 	      	<p class="mt-5 mb-3 text-muted text-center" th:text="${versionName}"></p>
 	    </div>
@@ -34,30 +34,27 @@
 </body>
 <script>
 	    new Vue({
-	      el: '#app',
+	      el: '#userForm',
 	      data() {
 	    	  var validateUserName = (rule, value, callback) => {
 	    		 var reg = /^[A-Za-z][A-Za-z0-9]{5,11}$/;
 	    	        if (!value) {
 	    	          return callback(new Error('用户名不能为空'));
+	    	        }else{
+	    	        	if (!reg.test(value)) {
+		    	            callback(new Error('请输入正确的用户名'));
+		    	          } else {
+		    	              callback();
+		    	          }
 	    	        }
-	    	        setTimeout(() => {
-	    	          if (!reg.test(value)) {
-	    	            callback(new Error('请输入正确的用户名'));
-	    	          } else {
-	    	              callback();
-	    	          }
-	    	        }, 1000);
 	    	      };
 	    	      
 	    	      var validatePassWord = (rule, value, callback) => {
-		    	        setTimeout(() => {
 		    	        	if (!value) {
 				    	          return callback(new Error('密码不能为空'));
 				    	   } else {
  		    	              callback();
 		    	          }
-		    	        }, 1000);
 		    	      };
 	        return {
 	        	ruleForm:{
@@ -77,12 +74,45 @@
 	        }
 	      },
 	      methods:{
-	    	  login(formName){
+	    	  toindex(formName){
 	    		  this.$refs[formName].validate((valid) => {
 	    	          if (valid) {
-	    	            alert('submit!');
 	    	            this.loadingFlag = true;
 	  	    		 	 this.loginText = "登录中";
+	  	    		 	$.ajax({
+		   	        		  url:[[@{/}]]+"user/toindex",
+		   	        		  type:"post",
+		   	        		  data:$('#userForm').serialize(),
+		   	        		  dataType:"json",
+		   	        		  timeout:10000,
+		   	        		  success:function(res){
+		   	        			 /*  if(res.code == 200){
+		   	        				sef.$notify({
+		   	        		          title: '成功',
+		   	        		          message: res.msg,
+		   	        		          type: 'success'
+		   	        		        });
+		   	        				setTimeout(function(){
+		   	        					window.location.href=[[@{/}]]+"user/login";
+		   	        				},1000);
+		   	        				
+		   	        			  }else{
+		   	        				sef.$notify({
+		   	        		          title: '警告',
+		   	        		          message: res.msg,
+		   	        		          type: 'warning'
+		   	        		        });
+		   	        			  } */
+		   	        		  },
+		   	        		  error:function(e){
+		   	        			sef.$notify({
+		   	        	          title: '警告',
+		   	        	          message: '发生错误,请联系管理员',
+		   	        	          type: 'warning'
+		   	        	        });
+		   	        		  }
+		   	        	  });
+	  	    		 	 
 	    	          } else {
 	    	            console.log('error submit!!');
 	    	            return false;

@@ -169,11 +169,11 @@ h1 {
     /* margin-bottom:20px; */
 }
 
-.login-form input[type="submit"]:hover {
+.login-form input[type="button"]:hover {
     background: #f9b701c7;
 }
 
-.login-form input[type="submit"] {
+.login-form input[type="button"] {
     background: #b52e31;
     color: #fff;
     font-size: 18px;
