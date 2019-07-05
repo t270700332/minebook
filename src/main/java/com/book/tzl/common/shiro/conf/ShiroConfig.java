@@ -10,9 +10,7 @@ import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.HandlerExceptionResolver;
 
-import com.book.tzl.common.handler.ExceptionHandler;
 import com.book.tzl.common.shiro.UserRealm;
 
 @Configuration
@@ -59,8 +57,8 @@ public class ShiroConfig {
 	public HashedCredentialsMatcher hashedCredentialsMatcher() {
 		HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
 		hashedCredentialsMatcher.setHashAlgorithmName("md5");// 散列算法:这里使用MD5算法;
-		// hashedCredentialsMatcher.setHashIterations(2);// 散列的次数，比如散列两次，相当于
-		// md5(md5(""));
+		hashedCredentialsMatcher.setHashIterations(2);
+		// 散列的次数，比如散列两次，相当于 md5(md5(""));
 		return hashedCredentialsMatcher;
 	}
 
@@ -89,9 +87,9 @@ public class ShiroConfig {
 	 * 
 	 * @return
 	 */
-	@Bean(name = "exceptionHandler")
-	public HandlerExceptionResolver handlerExceptionResolver() {
-		return new ExceptionHandler();
-	}
+	/*
+	 * @Bean(name = "exceptionHandler") public HandlerExceptionResolver
+	 * handlerExceptionResolver() { return new ExceptionHandler(); }
+	 */
 
 }

@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -11,10 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.book.tzl.common.Version;
-import com.book.tzl.common.utils.PasswordHelper;
+import com.book.tzl.common.handler.ExceptionHandler;
 import com.book.tzl.system.user.domain.UserPojo;
 import com.book.tzl.system.user.impl.UserServiceImpl;
 
@@ -37,17 +39,21 @@ public class UserController {
 	}
 
 	@RequestMapping("/toindex")
-	public ModelAndView index(String username, String password) {
+	public Map<String, Object> index(String username, String password, HttpServletRequest request,
+			HttpServletResponse response, Object handler) {
 		UserPojo user = userServiceImpl.findByUsername(username);
-		ModelAndView view = new ModelAndView();
+		Map<String, Object> attributes = new HashMap<>();
 		Subject subject = SecurityUtils.getSubject();
-		String md5Pwd = PasswordHelper.encrypt(username, password, user.getSalt());
-		UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), md5Pwd);
-		if (!subject.isAuthenticated()) {
-
-			subject.login(token);
+		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+		try {
+			if (!subject.isAuthenticated()) {
+				subject.login(token);
+			}
+		} catch (Exception e) {
+			ExceptionHandler.resolveException(request, response, handler, e, attributes);
 		}
-		return view;
+
+		return attributes;
 	}
 
 	@RequestMapping("/toregister")
