@@ -9,34 +9,50 @@
    <th:block th:include="/common/common_header :: header"></th:block>
 </head>
 <body>
-    <div class="main-agile">
-		<h1>Rotate Under Construction</h1>
+    <div class="main-agile" id="app">
+		<h1>取之有度，用之有节</h1>
 		<div class="w3ls-grids">
 			<div class="w3ls-right">
 				<div class="w3l-dot">
 					<div class="w3-heading">
-						<h3>We'll be here soon</h3>
-						<h4>OUR WEBSITE</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+						<h3>We'll stick with it</h3>
 					</div>
 				</div>
-				<div class="demo2 dsCountDown ds-black"><div class="ds-element ds-element-days">							<div class="ds-element-title">Days</div>							<div class="ds-element-value ds-days">2064</div>						</div><div class="ds-element ds-element-hours">							<div class="ds-element-title">Hours</div>							<div class="ds-element-value ds-hours">01</div>						</div><div class="ds-element ds-element-minutes">							<div class="ds-element-title">Minutes</div>							<div class="ds-element-value ds-minutes">20</div>						</div><div class="ds-element ds-element-seconds">							<div class="ds-element-title">Seconds</div>							<div class="ds-element-value ds-seconds">16</div>						</div>
+				<div class="demo2 dsCountDown ds-black">
+					<div class="ds-element ds-element-days">							
+						<div class="ds-element-title">Days</div>							
+						<div class="ds-element-value ds-days">{{year}}</div>	
+					</div>
 					
+					<div class="ds-element ds-element-hours">							
+						<div class="ds-element-title">Hours</div>		
+						<div class="ds-element-value ds-hours">{{hour}}</div>						
+					</div>
+					<div class="ds-element ds-element-minutes">							
+						<div class="ds-element-title">Minutes</div>							
+						<div class="ds-element-value ds-minutes">{{minute}}</div>						
+					</div>
+					<div class="ds-element ds-element-seconds">							
+						<div class="ds-element-title">Seconds</div>							
+						<div class="ds-element-value ds-seconds">{{second}}</div>						
+					</div>
 				</div>
 			</div>
 			<div class="w3ls-left">
 		<div class="login-w3l">	
 			<div class="top-img-agileits-w3layouts">
-				<h2 class="sub-head-w3-agileits">stay updated</h2>
+				<h2 class="sub-head-w3-agileits">坚持</h2>
 			</div>			
-			<div class="login-form">	
-				<form action="#" method="post">
-					<input type="text" name="Name" placeholder="Name" required="">
-					<input type="email" name="Email" placeholder="Email" required="">
-					<input type="text" name="Company" placeholder="Company" required="">
-					<textarea name="Comments" placeholder="How can we help you?" required=""></textarea>
-					<input type="submit" value="Send">
-				</form>	
+			<div class="login-form ">	
+				<el-form  action="#" method="post" :model="ruleForm" ref="ruleForm"  status-icon :rules="rules">
+					<el-form-item  prop="username">
+				    	<el-input v-model="ruleForm.username" placeholder="用户名"></el-input>
+				   	</el-form-item>
+				   	<el-form-item  prop="password">
+				    	<el-input v-model="ruleForm.password" placeholder="密码"></el-input>
+				    </el-form-item>
+						<input type="submit" value="注册">
+				</el-form>	
 			</div>
 			<!-- //login -->
 				</div> 
@@ -46,13 +62,101 @@
 		</div>
 		<!-- copyright -->
 		<div class="copyright">
-			<p>Copyright © 2018.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">网页模板</a></p>
+			<p>Copyright © 2018.Company name All rights reserved</p>
 		</div>
 		<!-- //copyright -->  
 	</div>
 </body>
 <script>
-	    
+new Vue({
+    el: '#app',
+    data() {
+    	var validateUserName = (rule, value, callback) => {
+   		 var reg = /^[A-Za-z][A-Za-z0-9]{5,11}$/;
+   	        if (!value) {
+   	          return callback(new Error('用户名不能为空'));
+   	        }else{
+   	        	if (!reg.test(value)) {
+   	   	            callback(new Error('用户名由字母加数字组成首位须为字母,长度为6-12'));
+   	   	          } else {
+   	   	        	  $.ajax({
+   	   	        		  url:[[@{/}]]+"checkUsername",
+   	   	        		  type:"post",
+   	   	        		  data:value,
+   	   	        		  dataType:"json",
+   	   	        		  timeout:10000,
+   	   	        		  success:function(res){
+   	   	        			  
+   	   	        		  },
+   	   	        		  error:function(e){
+   	   	        		 	callback(new Error('发生错误,请联系管理员'));
+   	   	        		  }
+   	   	        	  });
+   	   	              callback();
+   	   	          }
+   	        }
+   	      };
+   	      
+   	      var validatePassWord = (rule, value, callback) => {
+	    	        setTimeout(() => {
+	    	        	if (!value) {
+			    	          return callback(new Error('密码不能为空'));
+			    	   } else {
+			    		   if(value.length<6){
+			    			   return callback(new Error('密码长度须大于5'));
+			    		   }else{
+			    			   callback();
+			    		   }
+	    	    }
+	    	}, 500);
+	    };
+      return {
+    	  ruleForm:{
+    		  username:"",
+        	  password:""
+    	  },
+    	  year:"",
+    	  hour:"",
+    	  minute:"",
+    	  second:"",
+    	  rules:{
+    		  username:[
+    			  {validator:validateUserName,trigger:'blur'}
+    		  ],
+    		  password:[
+    			  {validator:validatePassWord,trigger:'blur'}
+    		  ]
+    	  }
+      }
+    },
+    methods:{
+    	
+    },
+    created() {
+    	var nowDate = new Date();
+		this.year= nowDate.getFullYear();
+		this.hour= nowDate.getHours();
+		this.minute= nowDate.getMinutes();
+		this.second= nowDate.getSeconds();
+		// 自动补零   
+		this.month= (this.month< 10) ? '0' + this.month: this.month= this.month;    
+		this.hour= (this.hour< 10) ? '0' + this.hour: this.hour= this.hour;    
+		this.minute= (this.minute< 10) ? '0' + this.minute: this.minute= this.minute;    
+	    this.second= (this.second< 10) ? '0' + this.second: this.second= this.second;
+    	setInterval( () =>{
+    		var nowDate = new Date();
+    		this.year= nowDate.getFullYear();
+    		this.hour= nowDate.getHours();
+    		this.minute= nowDate.getMinutes();
+    		this.second= nowDate.getSeconds();
+    		// 自动补零   
+    		this.month= (this.month< 10) ? '0' + this.month: this.month= this.month;    
+    		this.hour= (this.hour< 10) ? '0' + this.hour: this.hour= this.hour;    
+    		this.minute= (this.minute< 10) ? '0' + this.minute: this.minute= this.minute;    
+    	    this.second= (this.second< 10) ? '0' + this.second: this.second= this.second;
+    	},1000)
+    }
+  })
   </script>
 </html>
 
