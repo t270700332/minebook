@@ -13,8 +13,10 @@
 	    <div class="form-bg">
 	        <div class="text-center mb-4">
 	              <h1 class="h3 mb-3 font-weight-normal">记账本</h1>
+	              <!-- <div th:text="${loginFlag  }"></div> -->
 	        </div>
 	        <div class="form-label-group" >
+	        <span style="color:red;font-size:15px;padding:5px;" th:if="${loginFlag}" th:text="${msg}">标签五</span>
 	        	<el-form-item  prop="userName">
 		        	<el-input prefix-icon="iconfont icon-ali-nickname" name="username"  v-model="ruleForm.userName" placeholder="请输入用户名"  auto-complete="off"></el-input>
 	      		</el-form-item>
@@ -79,40 +81,7 @@
 	    	          if (valid) {
 	    	            this.loadingFlag = true;
 	  	    		 	 this.loginText = "登录中";
-	  	    		 	$.ajax({
-		   	        		  url:[[@{/}]]+"user/toindex",
-		   	        		  type:"post",
-		   	        		  data:$('#userForm').serialize(),
-		   	        		  dataType:"json",
-		   	        		  timeout:10000,
-		   	        		  success:function(res){
-		   	        			 /*  if(res.code == 200){
-		   	        				sef.$notify({
-		   	        		          title: '成功',
-		   	        		          message: res.msg,
-		   	        		          type: 'success'
-		   	        		        });
-		   	        				setTimeout(function(){
-		   	        					window.location.href=[[@{/}]]+"user/login";
-		   	        				},1000);
-		   	        				
-		   	        			  }else{
-		   	        				sef.$notify({
-		   	        		          title: '警告',
-		   	        		          message: res.msg,
-		   	        		          type: 'warning'
-		   	        		        });
-		   	        			  } */
-		   	        		  },
-		   	        		  error:function(e){
-		   	        			sef.$notify({
-		   	        	          title: '警告',
-		   	        	          message: '发生错误,请联系管理员',
-		   	        	          type: 'warning'
-		   	        	        });
-		   	        		  }
-		   	        	  });
-	  	    		 	 
+	  	    		 	 window.location.href=[[@{/}]]+"user/toindex?username="+this.ruleForm.userName+"&password="+this.ruleForm.password;
 	    	          } else {
 	    	            console.log('error submit!!');
 	    	            return false;

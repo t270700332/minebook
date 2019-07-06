@@ -1,7 +1,6 @@
 package com.book.tzl.system.user.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +11,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -32,16 +32,15 @@ public class UserController {
 	private UserServiceImpl userServiceImpl;
 
 	@RequestMapping("/login")
-	public String loign(Map<Object, String> map) {
-		List<UserPojo> list = userServiceImpl.findAll();
+	public String loign(Map<Object, String> map, Model model) {
+		model.addAttribute("loginFlag", "false");
 		map.put("versionName", version.getName());
 		return "login/login";
 	}
 
 	@RequestMapping("/toindex")
-	public Map<String, Object> index(String username, String password, HttpServletRequest request,
-			HttpServletResponse response, Object handler) {
-		UserPojo user = userServiceImpl.findByUsername(username);
+	public String index(String username, String password, HttpServletRequest request, HttpServletResponse response,
+			Object handler, Model model) {
 		Map<String, Object> attributes = new HashMap<>();
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
@@ -49,11 +48,18 @@ public class UserController {
 			if (!subject.isAuthenticated()) {
 				subject.login(token);
 			}
+			return "redirect:/user/index";
 		} catch (Exception e) {
-			ExceptionHandler.resolveException(request, response, handler, e, attributes);
+			ExceptionHandler.resolveException(request, response, handler, e, model);
+			model.addAttribute("loginFlag", "true");
+			return "login/login";
 		}
 
-		return attributes;
+	}
+
+	@RequestMapping("/index")
+	public String iindex(UserPojo user) {
+		return "index/index";
 	}
 
 	@RequestMapping("/toregister")
