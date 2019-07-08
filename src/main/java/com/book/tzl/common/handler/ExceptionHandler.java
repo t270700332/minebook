@@ -1,5 +1,8 @@
 package com.book.tzl.common.handler;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,26 +20,27 @@ import org.springframework.ui.Model;
  */
 public class ExceptionHandler {
 
-	public static Model resolveException(HttpServletRequest request, HttpServletResponse response, Object handler,
-			Exception ex, Model model) {
+	public static Map<String, Object> resolveException(HttpServletRequest request, HttpServletResponse response,
+			Object handler, Exception ex, Model model) {
+		Map<String, Object> result = new HashMap<>();
 		if (ex instanceof UnauthorizedException) {
-			model.addAttribute("code", "1000001");
-			model.addAttribute("msg", "用户无权限");
+			result.put("code", "1000001");
+			result.put("msg", "用户无权限");
 		} else if (ex instanceof UnknownAccountException) {
-			model.addAttribute("code", "1000002");
-			model.addAttribute("msg", "用户名或密码错误");
+			result.put("code", "1000002");
+			result.put("msg", "用户名或密码错误");
 		} else if (ex instanceof IncorrectCredentialsException) {
-			model.addAttribute("code", "1000002");
-			model.addAttribute("msg", "用户名或密码错误");
+			result.put("code", "1000002");
+			result.put("msg", "用户名或密码错误");
 		} else if (ex instanceof LockedAccountException) {
-			model.addAttribute("code", "1000003");
-			model.addAttribute("msg", "账号已被锁定");
+			result.put("code", "1000003");
+			result.put("msg", "账号已被锁定");
 		} else {
-			model.addAttribute("code", "1000004");
-			model.addAttribute("msg", ex.getMessage());
+			result.put("code", "1000004");
+			result.put("msg", ex.getMessage());
 		}
 
-		return model;
+		return result;
 	}
 
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.book.tzl.common.Version;
 import com.book.tzl.common.handler.ExceptionHandler;
+import com.book.tzl.common.utils.UserUtils;
 import com.book.tzl.system.user.domain.UserPojo;
 import com.book.tzl.system.user.impl.UserServiceImpl;
 
@@ -33,32 +34,33 @@ public class UserController {
 
 	@RequestMapping("/login")
 	public String loign(Map<Object, String> map, Model model) {
-		model.addAttribute("loginFlag", "false");
 		map.put("versionName", version.getName());
 		return "login/login";
 	}
 
 	@RequestMapping("/toindex")
-	public String index(String username, String password, HttpServletRequest request, HttpServletResponse response,
-			Object handler, Model model) {
-		Map<String, Object> attributes = new HashMap<>();
+	@ResponseBody
+	public Map<String, Object> index(String username, String password, HttpServletRequest request,
+			HttpServletResponse response, Object handler, Model model) {
+		Map<String, Object> result = new HashMap<>();
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 		try {
 			if (!subject.isAuthenticated()) {
 				subject.login(token);
 			}
-			return "redirect:/user/index";
+			result.put("code", 200);
 		} catch (Exception e) {
-			ExceptionHandler.resolveException(request, response, handler, e, model);
-			model.addAttribute("loginFlag", "true");
-			return "login/login";
+			result.putAll(ExceptionHandler.resolveException(request, response, handler, e, model));
 		}
+		return result;
 
 	}
 
 	@RequestMapping("/index")
-	public String iindex(UserPojo user) {
+	public String iindex(UserPojo user, Model model) {
+		user = UserUtils.getUser();
+		model.addAttribute("user", user);
 		return "index/index";
 	}
 

@@ -16,7 +16,7 @@
 	              <!-- <div th:text="${loginFlag  }"></div> -->
 	        </div>
 	        <div class="form-label-group" >
-	        <span style="color:red;font-size:15px;padding:5px;" th:if="${loginFlag}" th:text="${msg}">标签五</span>
+	        <span style="color:red;font-size:15px;padding:5px;" v-if="loginFlag">{{msg}}</span>
 	        	<el-form-item  prop="userName">
 		        	<el-input prefix-icon="iconfont icon-ali-nickname" name="username"  v-model="ruleForm.userName" placeholder="请输入用户名"  auto-complete="off"></el-input>
 	      		</el-form-item>
@@ -65,6 +65,8 @@
 	        	},
 	        	loadingFlag:false,
 	        	loginText:"登录",
+	        	loginFlag:false,
+	        	msg:"",
 	        	rules:{
 	        		userName: [
 	                    { validator: validateUserName, trigger: 'blur' }
@@ -78,10 +80,32 @@
 	      methods:{
 	    	  toindex(formName){
 	    		  this.$refs[formName].validate((valid) => {
+	    			  var sef = this;
 	    	          if (valid) {
-	    	            this.loadingFlag = true;
-	  	    		 	 this.loginText = "登录中";
-	  	    		 	 window.location.href=[[@{/}]]+"user/toindex?username="+this.ruleForm.userName+"&password="+this.ruleForm.password;
+	  	    		 $.ajax({
+		   	        		  url:[[@{/}]]+"user/toindex",
+		   	        		  type:"post",
+		   	        		  data:{
+		   	        			  username:this.ruleForm.userName,
+		   	        			  password:this.ruleForm.password
+		   	        		  },
+		   	        		  dataType:"json",
+		   	        		  timeout:10000,
+		   	        		  success:function(res){
+		   	        			  if(res.code==200){
+		   	        				  this.loadingFlag = true;
+		   		  	    		 	  this.loginText = "登录中";
+		   	        				  window.location.href=[[@{/}]]+"user/index";
+		   	        			  }else{
+		   	        				sef.loginFlag = true;
+			   	        			sef.msg = res.msg;
+		   	        			  }
+		   	        		  },
+		   	        		  error:function(e){
+		   	        			
+		   	        		  }
+		   	        	  });
+	  	    		 	 
 	    	          } else {
 	    	            console.log('error submit!!');
 	    	            return false;

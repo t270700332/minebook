@@ -67,21 +67,18 @@ public class GlobalExceptionHandler {
 	// 400错误
 	@ExceptionHandler({ HttpMessageNotReadableException.class })
 	public String requestNotReadable(HttpMessageNotReadableException ex) {
-		System.out.println("400..requestNotReadable");
 		return exceptionFormat(7, ex);
 	}
 
 	// 400错误
 	@ExceptionHandler({ TypeMismatchException.class })
 	public String requestTypeMismatch(TypeMismatchException ex) {
-		System.out.println("400..TypeMismatchException");
 		return exceptionFormat(8, ex);
 	}
 
 	// 400错误
 	@ExceptionHandler({ MissingServletRequestParameterException.class })
 	public String requestMissingServletRequest(MissingServletRequestParameterException ex) {
-		System.out.println("400..MissingServletRequest");
 		return exceptionFormat(9, ex);
 	}
 
@@ -94,14 +91,12 @@ public class GlobalExceptionHandler {
 	// 406错误
 	@ExceptionHandler({ HttpMediaTypeNotAcceptableException.class })
 	public String request406(HttpMediaTypeNotAcceptableException ex) {
-		System.out.println("406...");
 		return exceptionFormat(11, ex);
 	}
 
 	// 500错误
 	@ExceptionHandler({ ConversionNotSupportedException.class, HttpMessageNotWritableException.class })
 	public String server500(RuntimeException ex) {
-		System.out.println("500...");
 		return exceptionFormat(12, ex);
 	}
 
@@ -120,7 +115,6 @@ public class GlobalExceptionHandler {
 	// 自定义异常捕获
 	@ExceptionHandler({ MyException.class })
 	public String myException(MyException ex) {
-		System.out.println("1111111111111111111");
 		return exceptionFormat(999, ex);
 	}
 

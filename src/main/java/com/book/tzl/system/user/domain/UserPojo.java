@@ -4,17 +4,17 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class UserPojo {
-	private int uid;
+	private Long uid;
 	private String username;
 	private String password;
 	private Set<Role> roles = new HashSet<>();
 	private String salt;
 
-	public int getUid() {
+	public Long getUid() {
 		return uid;
 	}
 
-	public void setUid(int uid) {
+	public void setUid(Long uid) {
 		this.uid = uid;
 	}
 
