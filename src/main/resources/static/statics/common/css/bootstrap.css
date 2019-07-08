@@ -161,14 +161,14 @@ sup {
 }
 
 a {
-  color: #007bff;
+  color: #312f2c;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
 }
 
 a:hover {
-  color: #0056b3;
+  color: #e79d05;
   text-decoration: underline;
 }
 
@@ -3863,7 +3863,7 @@ tbody.collapse.show {
 }
 
 .nav-tabs {
-  border-bottom: 1px solid #dee2e6;
+  /* border-bottom: 1px solid #dee2e6; */
 }
 
 .nav-tabs .nav-item {
