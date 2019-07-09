@@ -54,10 +54,16 @@ a:hover{
   }
   
   .el-aside {
-    background-color: #D3DCE6;
-    color: #333;
     text-align: center;
-    line-height: 200px;
+    /* line-height: 200px; */
+    padding-top: 10px;
+    padding: 0;
+    margin: 0;
+    color: #737373;
+    background-color: #fff;
+    box-shadow: inset 0 1px 0 0 #fff;
+    border-radius: 0 0 0 4px;
+}
   }
   
   .el-main {
@@ -72,6 +78,50 @@ a:hover{
  }
  
  #myTabContent{
- 	padding-top: 1rem;
+ 	/* padding-top: 1rem; */
+ 	background: #f8f8fa;
+    border: 1px solid rgba(255,255,255,0.68);
+    box-shadow: 0 6px 12px 0 rgba(7,13,28,0.04);
+    border-radius: 0 4px 4px 4px;
+    margin-top:35px;
  }
-  
+ 
+ .el-row{
+  text-align: left;
+  margin-left: 12px;
+  padding: 28px 32px 10px 20px;
+  border-bottom: 1px solid #eaeaec;
+  font: 12px 'helvetica neue',arial,'hiragino sans gb',stheiti,'wenquanyi micro hei',\5FAE\8F6F\96C5\9ED1,\5B8B\4F53,sans-serif;
+ }
+ 
+ .money-name{
+ 	font-size:12px;
+    line-height: 12px;
+    color: #aaa;
+    margin-bottom: 6px;
+ }
+ 
+ .font-color-red{
+  color:#f1523a;
+  display: block;
+  font-size: 18px;
+  line-height: 18px;
+ }
+ 
+.font-color-green{
+  color:#14ba89;
+  display: block;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.font-color-black{
+  color:#312f2c;
+  display: block;
+  font-size: 18px;
+  line-height: 18px;
+}
+ 
+ .row-div{
+ margin-bottom:18px;
+ }
