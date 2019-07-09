@@ -40,3 +40,7 @@ body{
 	color:#67c23a;
 }
 
+a:hover{
+	text-decoration : none;
+}
+

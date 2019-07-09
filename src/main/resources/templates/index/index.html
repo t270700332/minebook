@@ -12,7 +12,10 @@
 
 <!-- <div>欢迎你<span th:text="${user.username}"></span></div> -->
 <div id="app">
-	<div class="container">
+	<div id="bg1">
+		<div id="bg1-c"></div>
+	</div>
+	<div class="container" style="position:relative;">
 	<nav class="navbar navbar-expand-lg">
 	<div class="collapse navbar-collapse">
 	<span class="navbar-text">
@@ -20,7 +23,7 @@
     </span>
 	<ul class="nav navbar-nav justify-content-end mr-auto" id="myTab" role="tablist">
 	  <li class="nav-item">
-	    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">概览</a>
+	    <a class="nav-link" v-bind:class="{active:isActive}" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">概览</a>
 	  </li>
 	  <li class="nav-item">
 	    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">记一笔</a>
@@ -34,22 +37,41 @@
 	</ul>
 	<span class="navbar-text">
       <a class="header-user-a">个人中心</a><a class="header-user-name" th:text="${user.username}"></a>
-      <a th:href="@{/logout}"><i class="iconfont  icon-ali-Import"></i></a>
+      <a class="header-logout-a" th:href="@{/logout}"><i class="iconfont  icon-ali-Import"></i></a>
     </span>
 	</div>
 	</nav>
 	<div class="tab-content" id="myTabContent">
-	  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">home-tab</div>
-	  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">profile-tab</div>
-	  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">contact-tab</div>
+	  <div class="tab-pane fade" v-bind:class="{show:isShow, active:isActive}" id="home" role="tabpanel" aria-labelledby="home-tab">home-tab</div>
+	  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+	       
+	  </div>
+	  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+	  	<el-container style="margin-top:20px;">
+			  <el-aside width="180px">Aside</el-aside>
+			  <el-container>
+			    <el-header>Header</el-header>
+			    <el-main>Main</el-main>
+			  </el-container>
+			</el-container>
+	  </div>
 	  <div class="tab-pane fade" id="report"  role="tabpanel" aria-labelledby="contact-tab">报表-tab</div>
 	</div>
 	</div>
 </div>
 <script>
-  $(function () {
-     $('#myTab li:first-child a').tab('show')
-  })
+  new Vue({
+	      el: '#app',
+	      data() {
+	        return {
+	        	isActive:true,
+	        	isShow:true
+	        }
+	      },
+	      methods:{
+	    	 
+	      }
+	    })
   </script>
 </body>
 
