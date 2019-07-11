@@ -9,38 +9,41 @@
    <link th:href="@{/statics/indexCss/index.css}" rel="stylesheet"/>
 </head>
 <body>
-
 <!-- <div>欢迎你<span th:text="${user.username}"></span></div> -->
 <div id="app">
 	<div id="bg1">
 		<div id="bg1-c"></div>
 	</div>
-	<div class="container" style="position:relative;">
-	<nav class="navbar navbar-expand-lg">
-	<div class="collapse navbar-collapse">
-	<span class="navbar-text">
-      <img alt=""  th:src="@{/statics/img/logo.png}" class="header-logo-img" >
-    </span>
-	<ul class="nav navbar-nav justify-content-end mr-auto" id="myTab" role="tablist">
-	  <li class="nav-item">
-	    <a class="nav-link" v-bind:class="{active:isActive}" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">概览</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">记一笔</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">账户</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#report" role="tab" aria-controls="contact" aria-selected="false">报表</a>
-	  </li>
-	</ul>
-	<span class="navbar-text">
-      <a class="header-user-a">个人中心</a><a class="header-user-name" th:text="${user.username}"></a>
-      <a class="header-logout-a" th:href="@{/logout}"><i class="iconfont  icon-ali-Import"></i></a>
-    </span>
+	<div class="" id="my-header" style="">
+	<div style="margin: 0 auto;position: relative;width:1108px;">
+		<nav class="navbar navbar-expand-lg">
+			<div class="collapse navbar-collapse">
+				<span class="navbar-text">
+			      	<img alt=""  th:src="@{/statics/img/logo.png}" class="header-logo-img" >
+			    </span>
+				<ul class="nav navbar-nav justify-content-end mr-auto" id="myTab" role="tablist">
+				  <li class="nav-item">
+				    <a class="nav-link" v-bind:class="{active:isActive}" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">概览</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">记一笔</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">账户</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#report" role="tab" aria-controls="contact" aria-selected="false">报表</a>
+				  </li>
+				</ul>
+					<span class="navbar-text">
+				      <a class="header-user-a">个人中心</a><a class="header-user-name" th:text="${user.username}"></a>
+				      <a class="header-logout-a" th:href="@{/logout}"><i class="iconfont  icon-ali-Import"></i></a>
+				    </span>
+				</div>
+		</nav>
 	</div>
-	</nav>
+	</div>
+	<div class="container" style="position:relative;top: 45px;">
 	<div class="tab-content" id="myTabContent">
 	  <div class="tab-pane fade" v-bind:class="{show:isShow, active:isActive}" id="home" role="tabpanel" aria-labelledby="home-tab">home-tab</div>
 	  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -78,7 +81,17 @@
 				</el-row>
 				<el-row style="padding:0 0;">
 					  <ul style="padding-inline-start:0px;position: relative;" id="account-ul" >
-					      <li v-for = "(Li,i) in liList" @click="chooseAccount($event,i)">{{Li.name}}{{i}}</li>
+					      <li v-for = "(Li,index) in liList" @click="chooseAccount($event,index)">
+					      	<span style="width: 32px; height: 32px;float:left;padding-top: 22px;padding-left: 16px;">
+					      		<i class="iconfont" 
+					      		:class="{'icon-ali-qian':Li.iconClass1,'icon-ali-gaoxiaofei':Li.iconClass2,'icon-ali-signboard':Li.iconClass3,'icon-ali-taojinbi':Li.iconClass4,'icon-ali-data':Li.iconClass5,'icon-ali-compare':Li.iconClass6,'icon-ali-quan':Li.iconClass7,'icon-ali-shuffling-banner':Li.iconClass8}" 
+					      		style="font-size: 28px;"></i>
+					      	</span>
+					        <span style="float: right;padding-top: 20px;">
+					          <span style="font-size: 14px;" :style="{color:Li.color}">{{Li.money}}</span>
+					          <span style="margin-top: 5px;color: #312f2c;font-size: 12px;">{{Li.name}}</span>
+					        </span>
+					      </li>
 					     <span id="l-choose-bg" class="png" :style="{top:topHeight,display:displayStyle}"></span>
 					  </ul>
 				</el-row>  
@@ -102,13 +115,14 @@
 	        	topHeight:"0px",
 	        	displayStyle:"inline",
 	        	liList:[
-	        		{id:1,name:"zs1"},
-	        		{id:2,name:"zs2"},
-	        		{id:3,name:"zs3"},
-	        		{id:4,name:"zs4"},
-	        		{id:5,name:"zs5"},
-	        		{id:6,name:"zs6"},
-	        		{id:7,name:"zs7"},
+	        		{id:1,name:"现金账户",money:"243,123,12.00",color:"#f1523a",iconClass1:true},
+	        		{id:2,name:"金融账户",money:"0.00",color:"#f1523a",iconClass2:true},
+	        		{id:3,name:"虚拟账户",money:"0.00",color:"#f1523a",iconClass3:true},
+	        		{id:4,name:"信用账户",money:"0.00",color:"#14ba89",iconClass4:true},
+	        		{id:5,name:"负债账户",money:"0.00",color:"#14ba89",iconClass5:true},
+	        		{id:6,name:"债权账户",money:"0.00",color:"#f1523a",iconClass6:true},
+	        		{id:7,name:"投资账户",money:"0.00",color:"#f1523a",iconClass7:true},
+	        		{id:7,name:"保险账户",money:"0.00",color:"#f1523a",iconClass8:true},
 	        	]
 	        }
 	      },
