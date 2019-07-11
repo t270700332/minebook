@@ -13519,7 +13519,7 @@ stroke-dashoffset
 	flex-basis: auto;
 	overflow: auto;
 	box-sizing: border-box;
-	padding: 20px
+	/* padding: 20px */
 }
 
 .el-footer {

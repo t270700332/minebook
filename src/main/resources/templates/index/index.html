@@ -37,7 +37,7 @@
 				</ul>
 					<span class="navbar-text">
 				      <a class="header-user-a">个人中心</a><a class="header-user-name" th:text="${user.username}"></a>
-				      <a class="header-logout-a" th:href="@{/logout}"><i class="iconfont  icon-ali-Import"></i></a>
+				      <a class="header-logout-a" th:href="@{/logout}"><i class="iconfont  icon-ali-login"></i></a>
 				    </span>
 				</div>
 		</nav>
@@ -97,7 +97,39 @@
 				</el-row>  
 			  </el-aside>
 			  <el-container>
-			    <el-main>Main</el-main>
+			    <el-main>
+			       <div class="acc_rtop">
+			       		<div>
+			       			<h2 class="acc_rtop_title">现金账户</h2>
+			       		</div>
+			       		<div class="acc_rtop_content">
+			       			<div class="acc_rtop_data">
+				       			<div class="acc_rtop_item">
+				       				<p class="acc_rtop_name">余额</p>
+				       				<p class="acc_rtop_num" id="acc_balance">249,013.00</p>
+				       			</div>
+				       			<div class="acc_rtop_item">
+				       				<p class="acc_rtop_name">流入</p>
+				       				<p class="acc_rtop_num" id="acc_in">261,954.00</p>
+				       			</div>
+				       			<div class="acc_rtop_item">
+				       				<p class="acc_rtop_name">流出</p>
+				       				<p class="acc_rtop_num" id="acc_out">12,941.00</p>
+				       			</div>
+			       			</div>
+			       			<div id="r-info">
+			       				<div class="r-info-data clearfix">
+			       					<a id="r-addbtn" class="btn-common-yellow" href="javascript:;" onclick="acc.add.showAddMainDialog();">
+			       						<i class="iconfont icon-ali-zengjia"></i>添加账户
+			       					</a>
+			       				</div>
+			       			</div>
+			       		</div>
+			       </div>
+			       <div>
+			       
+			       </div>
+			    </el-main>
 			  </el-container>
 			</el-container>
 	  </div>

@@ -170,3 +170,124 @@ a:hover{
     background: #f8f8fa;
     display: node;
 }
+
+.acc_rtop {
+    padding: 34px 36px 4px 36px;
+}
+
+.acc_rtop_title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #312f2c;
+}
+
+.acc_rtop_content {
+    position: relative;
+    height: 47px;
+    margin-top: 35px;
+}
+
+.acc_rtop_item {
+    display: inline-block;
+    font-size: 14px;
+    letter-spacing: 0;
+    padding-right: 35px;
+    padding-left: 35px;
+    border-right: 1px solid #eaeaec;
+}
+
+.acc_rtop_name {
+    font-size: 12px;
+    color: #aaa;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.acc_rtop_num {
+    font-size: 26px;
+    margin-top: 8px;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.acc_rtop_item:nth-of-type(1) {
+    padding-left: 0;
+}
+
+.acc_rtop_data{
+	font-size: 0;
+    letter-spacing: -5px;
+}
+
+#acc_in{
+	color: #f1523a;
+    display: block;
+}
+
+#acc_out{
+	color: #14ba89;
+    display: block;
+}
+
+#r-info {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+    overflow: hidden;
+}
+
+#r-addbtn {
+    cursor: pointer;
+    float: right;
+    width: 168px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 16px;
+    color: #fff;
+    border-radius: 3px;
+}
+.btn-common-yellow {
+    display: block;
+    border: 0;
+    color: #fff;
+    background: #f7b432;
+    text-align: center;
+    cursor: pointer;
+    background-image: -webkit-linear-gradient(135deg,#febe3f 0,#eba51e 100%);
+    background-image: -moz-linear-gradient(135deg,#febe3f 0,#eba51e 100%);
+    background-image: linear-gradient(135deg,#febe3f 0,#eba51e 100%);
+    border-radius: 3px;
+    box-shadow: 0 8px 12px -6px rgba(167,86,0,0.16);
+    outline: 0;
+}
+
+#r-addbtn .icon-ali-zengjia {
+    font-size: 16px;
+    -webkit-text-stroke-width: .8px;
+    margin-right: 7px;
+}
+.icon-ali-zengjia {
+    font-size: 20px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0;
+    -moz-osx-font-smoothing: grayscale;
+}
+
