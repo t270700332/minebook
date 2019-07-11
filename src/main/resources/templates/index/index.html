@@ -76,14 +76,14 @@
 					     </div> 
 					  </div>
 				</el-row>
-				<el-row>
-					  <div>1</div>
-					  <div>2</div>
-					  <div>3</div>
+				<el-row style="padding:0 0;">
+					  <ul style="padding-inline-start:0px;position: relative;" id="account-ul" >
+					      <li v-for = "(Li,i) in liList" @click="chooseAccount($event,i)">{{Li.name}}{{i}}</li>
+					     <span id="l-choose-bg" class="png" :style="{top:topHeight,display:displayStyle}"></span>
+					  </ul>
 				</el-row>  
 			  </el-aside>
 			  <el-container>
-			    <el-header>Header</el-header>
 			    <el-main>Main</el-main>
 			  </el-container>
 			</el-container>
@@ -98,11 +98,24 @@
 	      data() {
 	        return {
 	        	isActive:true,
-	        	isShow:true
+	        	isShow:true,
+	        	topHeight:"0px",
+	        	displayStyle:"inline",
+	        	liList:[
+	        		{id:1,name:"zs1"},
+	        		{id:2,name:"zs2"},
+	        		{id:3,name:"zs3"},
+	        		{id:4,name:"zs4"},
+	        		{id:5,name:"zs5"},
+	        		{id:6,name:"zs6"},
+	        		{id:7,name:"zs7"},
+	        	]
 	        }
 	      },
 	      methods:{
-	    	 
+	    	  chooseAccount(e,n){
+	    		 this.topHeight = (n*72)+"px";
+	    	  }
 	      }
 	    })
   </script>

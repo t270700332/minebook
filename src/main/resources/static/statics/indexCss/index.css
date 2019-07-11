@@ -125,3 +125,26 @@ a:hover{
  .row-div{
  margin-bottom:18px;
  }
+ 
+#account-ul li{ 
+	list-style: none;
+	height:72px;
+	border-bottom: 1px solid #eaeaec;
+	position:inherit;
+	z-index:9999;
+}
+
+/* .choose{
+	border-left: 4px solid #e79d05;
+} */
+
+#l-choose-bg {
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    width: 100%;
+    border-left: 4px solid #e79d05;
+    height: 72px;
+    background: #f8f8fa;
+    display: node;
+}
