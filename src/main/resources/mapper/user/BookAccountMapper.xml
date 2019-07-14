@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.book.tzl.system.user.mapper.BookAccountMapper">
+   <sql id="bookAccountSql">
+      a.id,
+      a.name
+   </sql>
+   
+   <resultMap id="bookAccountMap" type="com.book.tzl.system.book.domain.BookAccount">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <collection property="bookAccountBranch" ofType="com.book.tzl.system.book.domain.BookAccountBranch">
+            <id property="id" column="id"/>
+            <result property="account_id" column="account_id"/>
+            <result property="name" column="name"/>
+            <result property="account_balance" column="account_balance"/>
+            <result property="account_inflows" column="account_inflows"/>
+            <result property="account_outflow" column="account_outflow"/>
+            <result property="remarks" column="remarks"/>
+        </collection>
+    </resultMap>
+
+    <select id="findAll" resultMap="bookAccountMap">
+        SELECT 
+        	*
+        FROM 
+        	book_account a
+    </select>
+    
+    
+</mapper>
