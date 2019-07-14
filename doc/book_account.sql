@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : tzl-localhost
-Source Server Version : 50726
+Source Server         : tzl
+Source Server Version : 50725
 Source Host           : localhost:3306
 Source Database       : minebook
 
 Target Server Type    : MYSQL
-Target Server Version : 50726
+Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-07-12 14:54:28
+Date: 2019-07-14 22:27:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,6 +28,14 @@ CREATE TABLE `book_account` (
 -- ----------------------------
 -- Records of book_account
 -- ----------------------------
+INSERT INTO `book_account` VALUES ('2', '现金账户');
+INSERT INTO `book_account` VALUES ('3', '金融账户');
+INSERT INTO `book_account` VALUES ('4', '虚拟账户');
+INSERT INTO `book_account` VALUES ('5', '信用账户');
+INSERT INTO `book_account` VALUES ('6', '负债账户');
+INSERT INTO `book_account` VALUES ('7', '债权账户');
+INSERT INTO `book_account` VALUES ('8', '投资账户');
+INSERT INTO `book_account` VALUES ('9', '保险账户');
 
 -- ----------------------------
 -- Table structure for book_account_branch
@@ -107,3 +115,4 @@ CREATE TABLE `sys_user` (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES ('24', 'tzl520', 'c41f269285544c422feb980dc12e5259', null, 'f6eee22ca33834b136a03b9a0ec1a2ff');
+SET FOREIGN_KEY_CHECKS=1;
